@@ -32,8 +32,16 @@ jobs:
     needs: sast
     steps:
       - uses: actions/checkout@v4
-      - run: pip install -r requirements.txt pip-audit
-      - run: pip-audit
+      - name: Create virtual environment
+        run: |
+          python -m venv .venv
+          . .venv/bin/activate
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt pip-audit
+      - name: Run dependency audit
+        run: |
+          . .venv/bin/activate
+          pip-audit --fix
 
   container:
     runs-on: ubuntu-latest

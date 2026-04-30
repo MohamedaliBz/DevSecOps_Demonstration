@@ -5,7 +5,9 @@ import os
 app = Flask(__name__)
 
 # ❌ Secret hardcodé
-API_KEY = "AKIA_TEST_SECRET_123"
+API_KEY = "AKIAIOSFODNN7EXAMPLE"
+TOKEN = "ghp_1234567890abcdef"
+
 
 def get_db():
     return sqlite3.connect("users.db")

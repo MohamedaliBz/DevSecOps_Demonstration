@@ -16,7 +16,10 @@ def search():
     name = request.args.get("name", "")
     
     # ❌ SQL Injection
-    query = f"SELECT * FROM users WHERE name = '{name}'"
+    cursor = conn.execute(
+    "SELECT * FROM users WHERE name = ?",
+    (name,)
+)
     
     conn = get_db()
     result = conn.execute(query).fetchall()

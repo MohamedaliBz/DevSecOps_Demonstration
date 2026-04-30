@@ -4,8 +4,6 @@ import os
 
 app = Flask(__name__)
 
-# ❌ Secret hardcodé
-
 def get_db():
     return sqlite3.connect("users.db")
 

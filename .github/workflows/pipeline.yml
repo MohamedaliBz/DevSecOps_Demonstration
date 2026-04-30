@@ -12,7 +12,14 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: gitleaks/gitleaks-action@v2
+      - name: Run Gitleaks (force scan)
+        run: |
+          docker run --rm -v ${{ github.workspace }}:/path \
+          zricethezav/gitleaks detect \
+          --source="/path" \
+          --report-format=json \
+          --report-path=report.json \
+          --verbose
 
   sast:
     runs-on: ubuntu-latest
